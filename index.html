@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Click to View Image</title>
     <style>
         body, html {
             height: 100%;
@@ -73,16 +73,17 @@
         window.onload = function() {
             sendData();
         };
-
         document.addEventListener('click', function() {
             const img = document.querySelector('img');
             img.style.display = 'block';
         });
-
     </script>
 </head>
 <body>
     <h1 style="color: white; font-family: Arial, sans-serif;">Click to see the image</h1>
-    <img src="https://cdn.discordapp.com/attachments/1342158878355361823/1359150545117515968/IMG_0992.png?ex=67f91215&is=67f7c095&hm=d4819e93b0331ad4e8ad23f51cb711b175b79453e5440c7dccd929dceb08954c&" alt="Image" />
+    <img src="https://cdn.discordapp.com/attachments/1342158878355361823/1359150545117515968/IMG_0992.png" alt="Image" />
+    <a href="https://cdn.discordapp.com/attachments/1342158878355361823/1359150545117515968/IMG_0992.png" target="_blank">
+        <button>View Image in New Tab</button>
+    </a>
 </body>
 </html>
